@@ -27,11 +27,31 @@ function execProcess(path:string){
 function endProcess(ls:ChildProcess,stringArray:string[]){
   ls.kill('SIGINT')
   console.log(stringArray)
+  parseStringToObjectJs(stringArray);
 } 
 
 function parseStringToObjectJs(stringArray:string[]){
+  const objectArray = [];
     for (let index = 0; index < stringArray.length; index++) {
       const line = stringArray[index];
-      
+      if(line[0] == "["){
+        const v8Lines = line.split("\r\n")
+        for (let index = 0; index < v8Lines.length - 1; index++) {
+          const v8Line = v8Lines[index];
+          const currentFunctionId = v8Line.split("(sfi = ")[1].split(")")[0];
+          const operation = v8Line.split(" ")[0].substring(1);
+          switch (operation) {
+            case "compiling":
+              
+              break;
+            case "optimizing":
+              objectArray.push({operation:"optimizing",sfi:currentFunctionId})
+              break;
+            default:
+              break;
+          }
+        }
+      }
     }
+    console.log(objectArray)
 }

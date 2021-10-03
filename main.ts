@@ -1,7 +1,7 @@
 import { ChildProcess, spawn } from 'child_process';
 import { Command } from 'commander';
 import { funcObj } from './funcObj';
-
+import * as fs from "fs";
 
 const program = new Command();
 program
@@ -124,4 +124,12 @@ function parseStringToObjectJs(stringArray:string[]){
       }
     }
     console.log(funcCollection)
+    const outputPath = program.opts().output
+    const funcCollectionJson = JSON.stringify(funcCollection);
+    if(outputPath){
+      fs.writeFileSync(outputPath,funcCollectionJson);
+    }
+    else{
+      fs.writeFileSync(`${__dirname}/output.json`,funcCollectionJson);
+    }
 }

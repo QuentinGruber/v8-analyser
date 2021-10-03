@@ -65,7 +65,6 @@ function parseStringToObjectJs(stringArray: string[]) {
   const funcCollection: any = {};
   for (let index = 0; index < stringArray.length; index++) {
     const line = stringArray[index];
-    console.log(line + "\n\n\n\n");
     const v8Lines = line.split("\r\n");
     for (let index = 0; index < v8Lines.length - 1; index++) {
       const v8Line = v8Lines[index];

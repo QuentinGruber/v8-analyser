@@ -127,7 +127,7 @@ function parseStringToObjectJs(stringArray:string[]){
     const outputPath = program.opts().output
     const funcCollectionJson = JSON.stringify(funcCollection);
     if(outputPath){
-      fs.writeFileSync(outputPath,funcCollectionJson);
+      fs.writeFileSync(`${__dirname}/${outputPath}`,funcCollectionJson);
     }
     else{
       fs.writeFileSync(`${__dirname}/output.json`,funcCollectionJson);

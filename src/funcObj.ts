@@ -1,6 +1,6 @@
 export class funcObj {
     id:string;
-    name:string;
+    name!:string;
     isOptimized:boolean = false;
     executionOrder:string[] = [];
     markedReason!:string;

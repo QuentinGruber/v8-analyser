@@ -24,7 +24,7 @@ if (program.opts().execJson) {
 }
 
 function execProcess(path: string, time?: number) {
-  let processId;
+  let processId: NodeJS.Timeout;
   if (time) {
     processId = setTimeout(() => endProcess(ls, stringArray), time * 1000);
   }
@@ -40,7 +40,7 @@ function execProcess(path: string, time?: number) {
   const ls: ChildProcess = spawn("node", spawnArgs);
   const stringArray: string[] = [];
 
-  ls.stdout.on("data", (data: Buffer) => {
+  ls.stdout?.on("data", (data: Buffer) => {
     stringArray.push(data.toString());
   });
 

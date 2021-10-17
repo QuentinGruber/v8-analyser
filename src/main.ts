@@ -11,23 +11,16 @@ program
   .option("-do , --deopt-only", "Render deopt only")
   .option("-oo , --opt-only", "Render opt only")
   .option("-e, --exec-json", "Render in a html a previously done json output")
-  .option(
-    "-t, --time <type>",
-    "To choose how many time before the program shutdown"
-  );
 program.parse(process.argv);
 console.log(program.opts());
 if (program.opts().execJson) {
   throw "unimplemented";
 } else {
-  execProcess(program.opts().path, program.opts().time);
+  const pathFromOpt = program.opts().path;
+  execProcess(pathFromOpt?pathFromOpt:".");
 }
 
-function execProcess(path: string, time?: number) {
-  let processId: NodeJS.Timeout;
-  if (time) {
-    processId = setTimeout(() => endProcess(ls, stringArray), time * 1000);
-  }
+function execProcess(path: string) {
   console.log("executing :" + path);
   const spawnArgs = [];
   if (!program.opts().optOnly) {
@@ -45,7 +38,6 @@ function execProcess(path: string, time?: number) {
   });
 
   ls.on("close", (code) => {
-    clearTimeout(processId);
     console.log(`child process exited with code ${code}`);
     if (code) endProcess(ls, stringArray);
   });

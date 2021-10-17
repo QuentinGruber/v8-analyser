@@ -1,7 +1,7 @@
 import { ChildProcess, spawn } from "child_process";
 import { Command } from "commander";
 import { funcObj } from "./funcObj";
-import * as fs from "fs";
+import { writeHtmlOutput, writeJsonOutput } from "./writing";
 
 const program = new Command();
 program
@@ -57,9 +57,10 @@ function execProcess(path: string, time?: number) {
 
 function endProcess(ls: ChildProcess, stringArray: string[]) {
   ls.kill("SIGINT");
-  //console.log(stringArray)
   parseStringToObjectJs(stringArray);
 }
+
+
 
 function parseStringToObjectJs(stringArray: string[]) {
   const funcCollection: any = {};
@@ -144,10 +145,8 @@ function parseStringToObjectJs(stringArray: string[]) {
   }
   console.log(funcCollection);
   const outputPath = program.opts().output;
-  const funcCollectionJson = JSON.stringify(Object.values(funcCollection));
-  if (outputPath) {
-    fs.writeFileSync(`${__dirname}/${outputPath}`, funcCollectionJson);
-  } else {
-    fs.writeFileSync(`${__dirname}/output.json`, funcCollectionJson);
-  }
+  writeJsonOutput(outputPath,funcCollection);
+  writeHtmlOutput(outputPath,funcCollection);
 }
+
+

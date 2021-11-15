@@ -53,7 +53,7 @@ function buildHtml(funcObjs: any): Buffer {
       "<html><head>" +
       header +
       "</head><body>" +
-      "<h1>v8-analyser</h1></br>"+
+      "<h1><a href='https://github.com/QuentinGruber/v8-analyser'>v8-analyser</a></h1></br>"+
       body +
       "</body>" +
       scripts +

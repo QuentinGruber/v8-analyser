@@ -136,7 +136,7 @@ function parseStringToObjectJs(stringArray: string[]) {
     }
   }
   const outputPath = program.opts().output;
-  const path = process.cwd() + program.opts().path?program.opts().path:"";
+  const path = process.cwd();
   writeJsonOutput(path,outputPath,funcCollection);
   const htmlOutputPath = writeHtmlOutput(path,outputPath,funcCollection);
   open(`file://${htmlOutputPath}`);

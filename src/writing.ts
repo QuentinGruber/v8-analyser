@@ -53,6 +53,7 @@ function buildHtml(funcObjs: any): Buffer {
       "<html><head>" +
       header +
       "</head><body>" +
+      "<h1>v8-analyser</h1></br>"+
       body +
       "</body>" +
       scripts +

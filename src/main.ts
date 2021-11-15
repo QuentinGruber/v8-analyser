@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { ChildProcess, spawn } from "child_process";
 import { Command } from "commander";
 import { funcObj } from "./funcObj";

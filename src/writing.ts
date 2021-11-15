@@ -69,11 +69,9 @@ export function writeJsonOutput(path: string, data: any) {
   }
 }
 
-export function writeHtmlOutput(path: string, data: any) {
+export function writeHtmlOutput(path: string, data: any):string {
   const funcCollectionHtml = buildHtml(data);
-  if (path) {
-    fs.writeFileSync(`${__dirname}/${path}.html`, funcCollectionHtml);
-  } else {
-    fs.writeFileSync(`${__dirname}/output.html`, funcCollectionHtml);
-  }
+  const fullPath = `${__dirname}/${path?path:"output"}.html`
+  fs.writeFileSync(fullPath, funcCollectionHtml);
+  return fullPath;
 }

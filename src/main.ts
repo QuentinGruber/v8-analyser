@@ -2,7 +2,7 @@ import { ChildProcess, spawn } from "child_process";
 import { Command } from "commander";
 import { funcObj } from "./funcObj";
 import { writeHtmlOutput, writeJsonOutput } from "./writing";
-
+import open from "open";
 const program = new Command();
 program
   .option("-p, --path <type>", "Path to the script")
@@ -138,7 +138,8 @@ function parseStringToObjectJs(stringArray: string[]) {
   console.log(funcCollection);
   const outputPath = program.opts().output;
   writeJsonOutput(outputPath,funcCollection);
-  writeHtmlOutput(outputPath,funcCollection);
+  const htmlOutputPath = writeHtmlOutput(outputPath,funcCollection);
+  open(`file://${htmlOutputPath}`);
 }
 
 

@@ -13,7 +13,6 @@ program
   .option("-oo , --opt-only", "Render opt only")
   .option("-e, --exec-json", "Render in a html a previously done json output")
 program.parse(process.argv);
-console.log(program.opts());
 if (program.opts().execJson) {
   throw "unimplemented";
 } else {
@@ -136,7 +135,6 @@ function parseStringToObjectJs(stringArray: string[]) {
       }
     }
   }
-  console.log(funcCollection);
   const outputPath = program.opts().output;
   const path = process.cwd() + program.opts().path?program.opts().path:"";
   writeJsonOutput(path,outputPath,funcCollection);

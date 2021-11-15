@@ -138,8 +138,9 @@ function parseStringToObjectJs(stringArray: string[]) {
   }
   console.log(funcCollection);
   const outputPath = program.opts().output;
-  writeJsonOutput(outputPath,funcCollection);
-  const htmlOutputPath = writeHtmlOutput(outputPath,funcCollection);
+  const path = process.cwd() + program.opts().path?program.opts().path:"";
+  writeJsonOutput(path,outputPath,funcCollection);
+  const htmlOutputPath = writeHtmlOutput(path,outputPath,funcCollection);
   open(`file://${htmlOutputPath}`);
 }
 

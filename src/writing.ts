@@ -60,18 +60,16 @@ function buildHtml(funcObjs: any): Buffer {
   );
 }
 
-export function writeJsonOutput(path: string, data: any) {
+export function writeJsonOutput(path: string,outputPath:string, data: any) {
   const funcCollectionJson = JSON.stringify(Object.values(data));
-  if (path) {
-    fs.writeFileSync(`${__dirname}/${path}.json`, funcCollectionJson);
-  } else {
-    fs.writeFileSync(`${__dirname}/output.json`, funcCollectionJson);
-  }
+  const fullPath = `${path}/${outputPath?outputPath:"output.json"}`
+  fs.writeFileSync(fullPath, funcCollectionJson);
+  return fullPath;
 }
 
-export function writeHtmlOutput(path: string, data: any):string {
+export function writeHtmlOutput(path: string,outputPath:string, data: any):string {
   const funcCollectionHtml = buildHtml(data);
-  const fullPath = `${__dirname}/${path?path:"output"}.html`
+  const fullPath = `${path}/${outputPath?outputPath:"output.html"}`
   fs.writeFileSync(fullPath, funcCollectionHtml);
   return fullPath;
 }

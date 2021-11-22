@@ -1,10 +1,10 @@
 {
   "name": "v8-analyser",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "main": "out/main.js",
   "bin": {
-    "v8-analyser": "out/main.js"
+    "v8-analyser": "./out/main.js"
   },
   "scripts": {
     "install": "npm run build",
